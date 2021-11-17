@@ -78,5 +78,33 @@ public class StreamDemo {
 		Stream<Employee> empWithMoreSal = empList.stream().filter(emp -> emp.salary > 15000);
 		empWithMoreSal.forEach(emp -> System.out.println(emp.toString()));
 
+		// using limit() to get limited data
+		System.out.println("\nUsing limit() to get limited data");
+		Stream<Employee> firstThreeEmp = empList.stream().limit(3);
+		firstThreeEmp.forEach(emp -> System.out.println(emp.toString()));
+
+		// using skip() to skip specified data - opposite of limit
+		System.out.println("\nUsing skip() to skip specified data");
+		Stream<Employee> skipFirstThreeEmp = empList.stream().skip(2L);
+		skipFirstThreeEmp.forEach(emp -> System.out.println(emp.toString()));
+
+		// using map() to increase salary
+		System.out.println("\nUsing map() to increase salary");
+		List<Double> salaryHike = empList.stream().map(emp -> emp.salary += 100).collect((Collectors.toList()));
+		salaryHike.forEach(emp -> System.out.println(emp.toString()));
+
+		// using map() to change case
+		System.out.println("\nUsing map() to change case");
+		List<String> nameInUpperCase = empList.stream().map(emp -> emp.name.toUpperCase())
+				.collect((Collectors.toList()));
+		nameInUpperCase.forEach(emp -> System.out.println(emp.toString()));
+
+		// using IntStream to work with int values
+		System.out.println("\nUsing IntStream to work with int values");
+		IntStream myInts = IntStream.of(10, 20, 30);
+		myInts.forEach(System.out::println);
+
+		IntStream myInts2 = IntStream.rangeClosed(6, 10);
+		myInts2.forEach(System.out::println);
 	}
 }
